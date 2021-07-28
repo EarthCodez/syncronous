@@ -3,7 +3,7 @@ var db,pos,pos1;
 var imp;
 var gamestate="play";
 function setup(){
-    createCanvas(500,500);
+   var can= createCanvas(500,500);
     db=firebase.database();
     inp=prompt("hunter or hider");
     ball = createSprite(250,250,20,20);
@@ -20,10 +20,22 @@ function setup(){
         "x":325,
         "y":10,
        })  
-}
+     }
 
 function draw(){
     background("white");
+    console.log(frameCount)
+    if(frameCount==3600){
+        if(inp=="hunter"){
+            textSize(20);
+        text("you lose LOl!",200,200);
+        }
+        else if(inp=="hider"){
+            textSize(20);
+            text("YOU WIN!!!",200,200)
+        }
+    }
+    frameRate=60;
     if (ball.isTouching(ball2)) {
         gamestate="over";
         if(inp=="hunter"){
