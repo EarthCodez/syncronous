@@ -25,8 +25,8 @@ function setup(){
 
 function draw(){
     background("white");
-   ball.collide(edges);
-   ball2.collide(edges);
+   ball.collide(Edges);
+   ball2.collide(Edges);
     console.log(frameCount)
    if(gamestate=="over"){
     if(frameCount>=3600){
