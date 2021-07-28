@@ -1,12 +1,13 @@
 var ball,ball2;
 var db,pos,pos1;
 var imp;
+var gamestate="play";
 function setup(){
     createCanvas(500,500);
     db=firebase.database();
     inp=prompt("1 or 2");
-    ball = createSprite(250,250,10,10);
-    ball2 = createSprite(250,250,10,10);
+    ball = createSprite(250,250,20,20);
+    ball2 = createSprite(250,250,20,20);
     var ballpos=db.ref('ball/pos');
     ballpos.on('value',readPosition);
     var ballpos2=db.ref('ball/pos1');
@@ -23,36 +24,53 @@ function setup(){
 
 function draw(){
     background("white");
+    if (ball.isTouching(ball2)) {
+        if(inp==1){
+            textSize(20);
+        text("YOU WIN!!!",200,200);
+        gamestate="over";
+        }
+        else if(inp==2){
+            textSize(20);
+            text("you lose LOL!",200,200)
+            gamestate="over";
+        }
+      }
+      if(keyDown("tab")){
+          gamestate="play";
+      }
+      if(gamestate=="play"){
     if(inp==1){
         ball.shapeColor="red"
         if(keyDown(LEFT_ARROW)){
-            changePosition(-1,0);
+            changePosition(-5,0);
         }
         else if(keyDown(RIGHT_ARROW)){
-            changePosition(1,0);
+            changePosition(5,0);
         }
         else if(keyDown(UP_ARROW)){
-            changePosition(0,-1);
+            changePosition(0,-5);
         }
         else if(keyDown(DOWN_ARROW)){
-            changePosition(0,+1);
+            changePosition(0,+5);
         }
     }
     if(inp==2){
         ball2.shapeColor="lime"
         if(keyDown(LEFT_ARROW)){
-            changePosition1(-1,0);
+            changePosition1(-5,0);
         }
         else if(keyDown(RIGHT_ARROW)){
-            changePosition1(1,0);
+            changePosition1(5,0);
         }
         else if(keyDown(UP_ARROW)){
-            changePosition1(0,-1);
+            changePosition1(0,-5);
         }
         else if(keyDown(DOWN_ARROW)){
-            changePosition1(0,+1);
+            changePosition1(0,+5);
         }
     } 
+}
     // db.ref("chat").set({
     //     "send1":inp.value()
     // })
