@@ -1,10 +1,12 @@
 var ball,ball2;
 var db,pos,pos1;
 var imp;
+var edges;
 var gamestate="play";
 function setup(){
    var can= createCanvas(500,500);
     db=firebase.database();
+    edges=createEdgeSprites();
     inp=prompt("hunter or hider");
     ball = createSprite(250,250,20,20);
     ball2 = createSprite(250,250,20,20);
@@ -23,41 +25,68 @@ function setup(){
      }
 
 function draw(){
-    background("white");
-   if(ball.x>400||ball.x<0){
-    if(ball.x>400){
-   ball.x-=2 
-    }  
-      if(ball.x<0){
-   ball.x+=2 
-    }  
-   }
-   if(ball2.x>400||ball2.x<0){
-    if(ball2.x>400){
-   ball2.x-=2 
-    }  
-      if(ball2.x<0){
-   ball2.x+=2 
-    }  
-   }
-   //break
-   if(ball.y>400||ball.y<0){
-    if(ball.y>400){
-   ball.y-=2 
-    }  
-      if(ball.y<0){
-   ball.y+=2 
-    }  
-   }
-   if(ball2.y>400||ball2.y<0){
-    if(ball2.y>400){
-   ball2.y-=2 
-    }  
-      if(ball2.y<0){
-   ball2.y+=2 
-    }  
-   }
-    console.log(frameCount)
+    background("orange");
+    if(pos.x<=0){
+      pos.x=10
+    }
+    if(pos.x>=500){
+        pos.x=490
+      }
+      if(pos1.x<=0){
+        pos1.x=10
+      }
+      if(pos1.x>=500){
+          pos1.x=490
+        }
+        //break
+      if(pos.y>=500){
+        pos.y=490
+      }
+      if(pos.y<=0){
+        pos.y=10
+      }
+        if(pos1.y>=500){
+          pos1.y=490
+        }
+        if(pos1.y<=0){
+          pos1.y=10
+        }
+    // edges.collide(ball);
+//    if(ball.x>500||ball.x<0){
+//     if(ball.x>500){
+//    ball.x-=15 
+//     }  
+//      else if(ball.x<0){
+//    ball.x+=15 
+//     }  
+//    }
+//   else if(ball2.x>500||ball2.x<0){
+//     if(ball2.x>500){
+//    ball2.x-=15 
+//     }  
+//     else  if(ball2.x<0){
+//    ball2.x+=15 
+//     }  
+//    }
+//    //break
+//    else if(ball.y>500||ball.y<0){
+//     if(ball.y>500){
+//    ball.y-=15 
+//     }  
+//     else  if(ball.y<0){
+//    ball.y+=15 
+//     }  
+//    }
+//    else if(ball2.y>500||ball2.y<0){
+//     if(ball2.y>500){
+//    ball2.y-=15 
+//     }  
+//     else  if(ball2.y<0){
+//    ball2.y+=15 
+//     }  
+//    }
+//     console.log(frameCount)
+
    if(gamestate=="over"){
     if(frameCount>=3600){
         if(inp=="hunter"){
