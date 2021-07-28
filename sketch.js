@@ -25,15 +25,14 @@ function setup(){
 function draw(){
     background("white");
     if (ball.isTouching(ball2)) {
+        gamestate="over";
         if(inp=="hunter"){
             textSize(20);
         text("YOU WIN!!!",200,200);
-        gamestate="over";
         }
         else if(inp=="hider"){
             textSize(20);
             text("you lose LOL!",200,200)
-            gamestate="over";
         }
       }
       if(gamestate=="play"){
