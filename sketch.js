@@ -2,10 +2,8 @@ var ball,ball2;
 var db,pos,pos1;
 var imp;
 var gamestate="play";
-var Edges;
 function setup(){
    var can= createCanvas(500,500);
-  Edges= createEdgeSprites();
     db=firebase.database();
     inp=prompt("hunter or hider");
     ball = createSprite(250,250,20,20);
@@ -26,8 +24,39 @@ function setup(){
 
 function draw(){
     background("white");
-   ball.collide(Edges);
-   ball2.collide(Edges);
+   if(ball.x>400||ball.x<0){
+    if(ball.x>400){
+   ball.x-=2 
+    }  
+      if(ball.x<0){
+   ball.x+=2 
+    }  
+   }
+   if(ball2.x>400||ball2.x<0){
+    if(ball2.x>400){
+   ball2.x-=2 
+    }  
+      if(ball2.x<0){
+   ball2.x+=2 
+    }  
+   }
+   //break
+   if(ball.y>400||ball.y<0){
+    if(ball.y>400){
+   ball.y-=2 
+    }  
+      if(ball.y<0){
+   ball.y+=2 
+    }  
+   }
+   if(ball2.y>400||ball2.y<0){
+    if(ball2.y>400){
+   ball2.y-=2 
+    }  
+      if(ball2.y<0){
+   ball2.y+=2 
+    }  
+   }
     console.log(frameCount)
    if(gamestate=="over"){
     if(frameCount>=3600){
