@@ -2,9 +2,10 @@ var ball,ball2;
 var db,pos,pos1;
 var imp;
 var gamestate="play";
+var Edges;
 function setup(){
    var can= createCanvas(500,500);
-   createEdgeSprites();
+  Edges= createEdgeSprites();
     db=firebase.database();
     inp=prompt("hunter or hider");
     ball = createSprite(250,250,20,20);
