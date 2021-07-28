@@ -5,7 +5,7 @@ var gamestate="play";
 function setup(){
     createCanvas(500,500);
     db=firebase.database();
-    inp=prompt("1 or 2");
+    inp=prompt("hunter or hider");
     ball = createSprite(250,250,20,20);
     ball2 = createSprite(250,250,20,20);
     var ballpos=db.ref('ball/pos');
@@ -25,22 +25,19 @@ function setup(){
 function draw(){
     background("white");
     if (ball.isTouching(ball2)) {
-        if(inp==1){
+        if(inp=="hunter"){
             textSize(20);
         text("YOU WIN!!!",200,200);
         gamestate="over";
         }
-        else if(inp==2){
+        else if(inp=="hider"){
             textSize(20);
             text("you lose LOL!",200,200)
             gamestate="over";
         }
       }
-      if(keyDown("tab")){
-          gamestate="play";
-      }
       if(gamestate=="play"){
-    if(inp==1){
+    if(inp=="hunter"){
         ball.shapeColor="red"
         if(keyDown(LEFT_ARROW)){
             changePosition(-5,0);
@@ -55,7 +52,7 @@ function draw(){
             changePosition(0,+5);
         }
     }
-    if(inp==2){
+    if(inp=="hider"){
         ball2.shapeColor="lime"
         if(keyDown(LEFT_ARROW)){
             changePosition1(-5,0);
