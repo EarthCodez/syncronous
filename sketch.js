@@ -25,7 +25,8 @@ function setup(){
 function draw(){
     background("white");
     console.log(frameCount)
-    if(frameCount==3600){
+   if(gamestate=="over"){
+    if(frameCount>=3600){
         if(inp=="hunter"){
             textSize(20);
         text("you lose LOl!",200,200);
@@ -34,6 +35,7 @@ function draw(){
             textSize(20);
             text("YOU WIN!!!",200,200)
         }
+    }
     }
     frameRate=60;
     if (ball.isTouching(ball2)) {
