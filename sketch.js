@@ -11,6 +11,14 @@ function setup(){
     ballpos.on('value',readPosition);
     var ballpos2=db.ref('ball/pos1');
     ballpos2.on('value',readPosition1);
+    db.ref("ball/pos").set({
+        "x":125,
+        "y":10,
+       })    
+       db.ref("ball/pos1").set({
+        "x":325,
+        "y":10,
+       })  
 }
 
 function draw(){
@@ -44,8 +52,7 @@ function draw(){
         else if(keyDown(DOWN_ARROW)){
             changePosition1(0,+1);
         }
-    }
-
+    } 
     // db.ref("chat").set({
     //     "send1":inp.value()
     // })
