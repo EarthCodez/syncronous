@@ -7,7 +7,7 @@ function setup(){
    var can= createCanvas(500,500);
     db=firebase.database();
     edges=createEdgeSprites();
-    inp=prompt("hunter or hider");
+    inp=prompt("hunter or hider or watcher");
     ball = createSprite(250,250,20,20);
     ball2 = createSprite(250,250,20,20);
     var ballpos=db.ref('ball/pos');
@@ -97,6 +97,10 @@ function draw(){
             textSize(20);
             text("YOU WIN!!!",200,200)
         }
+        if(inp=="watcher"){
+            textSize(20);
+        text("hider wins!!",200,200);
+        }
     }
     }
     frameRate=60;
@@ -106,6 +110,10 @@ function draw(){
             textSize(20);
         text("YOU WIN!!!",200,200);
         }
+        else if(inp=="watcher"){
+            textSize(20);
+        text("hunter wins!!",200,200);
+        }
         else if(inp=="hider"){
             textSize(20);
             text("you lose LOL!",200,200)
@@ -113,6 +121,7 @@ function draw(){
       }
       if(gamestate=="play"){
     if(inp=="hunter"){
+        ball2.shapeColor="lime"
         ball.shapeColor="red"
         if(keyDown(LEFT_ARROW)){
             changePosition(-5,0);
@@ -129,6 +138,7 @@ function draw(){
     }
     if(inp=="hider"){
         ball2.shapeColor="lime"
+        ball.shapeColor="red"
         if(keyDown(LEFT_ARROW)){
             changePosition1(-5,0);
         }
@@ -142,6 +152,16 @@ function draw(){
             changePosition1(0,+5);
         }
     } 
+    if(inp=="watcher"){
+        ball2.shapeColor="lime"
+        ball.shapeColor="red"
+    }
+    if(inp!=="watcher"&&inp!=="hunter"&&inp!=="hider"){
+        textSize(30);
+        rect(0,0,500,500);
+        fill("red")
+    text("reload and use proper role",0,200);
+    }
 }
     // db.ref("chat").set({
     //     "send1":inp.value()
